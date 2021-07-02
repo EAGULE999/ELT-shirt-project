@@ -7,6 +7,6 @@
     {%block title %}Home{% endblock %}
 </head>
 <body>
-    {%block content %}Welcome to EL T-shirt Shop!!!{% endblock %}
+    {% load static %} <img src="{% static "MEDIA_URL/homepage.jpg" %}" alt="home" />
 </body>
 </html>
