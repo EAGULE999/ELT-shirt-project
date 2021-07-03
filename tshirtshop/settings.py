@@ -124,3 +124,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+ #This is for testing purposes. For production, the backend have to be changed to an email sending service
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
