@@ -1,4 +1,4 @@
-{% extends "main/header.html" %}
+{% extends "shop/base.html" %}
 
 {% block content %} 
 
@@ -6,11 +6,12 @@
 
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
+	<h1>Sign up</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
+		{{ register_form|crispy }}
+
+		<button class="btn btn-dark" type="submit">Sign up</button>
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 </div>

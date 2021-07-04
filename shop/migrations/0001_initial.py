@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -31,8 +30,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(db_index=True, max_length=15)),
                 ('slug', models.SlugField(max_length=15, unique=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subcategory', to='shop.Category')),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subcategory_creator', to=settings.AUTH_USER_MODEL)),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subcategory',
+                                               to='shop.Category')),
+                ('created_by',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subcategory_creator',
+                                   to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'Subcategories',
@@ -50,8 +52,11 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product_creator', to=settings.AUTH_USER_MODEL)),
-                ('subcategory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product', to='shop.Subcategory')),
+                ('created_by',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product_creator',
+                                   to=settings.AUTH_USER_MODEL)),
+                ('subcategory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product',
+                                                  to='shop.Subcategory')),
             ],
             options={
                 'verbose_name_plural': 'Products',
