@@ -33,7 +33,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subcategory in subcategories %}
-                    <a class="dropdown-item" href="#">{{ subcategory.name }}</a>
+                    <a class="dropdown-item" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
                     {% endfor %}
                 </div>
             </ul>
@@ -44,7 +44,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subcategory in subcategories %}
-                    <a class="dropdown-item" href="#">{{ subcategory.name }}</a>
+                    <a class="dropdown-item" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
                     {% endfor %}
                 </div>
             </ul>

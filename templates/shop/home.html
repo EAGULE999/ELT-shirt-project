@@ -7,6 +7,12 @@
     {% block title %}Home{% endblock %}
 </head>
 <body>
-    {% block content %}Te būs bilde{% endblock %}
+{% block content %}
+
+    {% for mainimage in mainimages %}
+        <img src="{{ mainimage.main_image.url }}" class="img-fluid" alt="Responsive image">
+    {% endfor %}
+
+{% endblock %}
 </body>
 </html>

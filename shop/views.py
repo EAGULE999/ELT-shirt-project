@@ -1,9 +1,14 @@
-from .models import Category, Subcategory, Product
-from django.shortcuts import render, redirect
+from .models import Category, Subcategory, Product, Mainimage
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate  # add this
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+
+
+def main_images(request):
+    mainimages = Mainimage.objects.all()
+    return render(request, 'shop/home.html', {'mainimages': mainimages})
 
 
 def categories(request):
@@ -21,6 +26,17 @@ def subcategories(request):
 def all_products(request):
     products = Product.objects.all()
     return render(request, 'shop/home.html', {'products': products})
+
+
+def subcategory_list(request, subcategory_slug=None):
+    subcategory = get_object_or_404(Subcategory, slug=subcategory_slug)
+    products = Product.objects.filter(subcategory=subcategory)
+    return render(request, 'shop/products/category.html', {'subcategory': subcategory, 'products': products})
+
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug, in_stock=True)
+    return render(request, 'shop/products/detail.html', {'product': product})
 
 
 def register_request(request):

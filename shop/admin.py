@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from .models import Category, Subcategory, Product
+from .models import Category, Subcategory, Product, Mainimage
+
+
+@admin.register(Mainimage)
+class MainimageAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Category)
