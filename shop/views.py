@@ -60,3 +60,17 @@ def logout_request(request):
     messages.info(request, "You have successfully logged out.")
     return redirect("/")
 
+
+def store(request):
+    context = {}
+    return render(request, 'shop/store.html', context)
+
+
+def cart(request):
+    context = {}
+    return render(request, 'shop/cart.html', context)
+
+
+def checkout(request):
+    context = {}
+    return render(request, 'shop/checkout.html', context)
