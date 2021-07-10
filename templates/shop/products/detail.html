@@ -6,9 +6,9 @@
 {% block content %}
 <div class="container">
     <main class="pt-5">
-        <div class="row g-3">
-            <div class="col-md-5 col-lg-5 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image"
+        <div class="row g-5">
+            <div class="col-md-4 col-lg-4 order-md-first bg-light">
+                <img class="img-fluid mx-auto d-block" width="300px" alt="Responsive image"
                      src="{{ product.image.url }}">
             </div>
             <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
@@ -16,33 +16,50 @@
                 <div class="border">
                     <div class="col border-bottom">
                         <div class="row p-3">
-                            <div class="col-6">Price</div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">{{ product.price }} EUR</span></div>
+                            <div class="col-6">PRICE:</div>
+                            <div class="col-6 text-end"><span class="h5 fw-bold">{{ product.price }} EUR</span></div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="row p-3">
-                            <div class="col-6">
-                                <label for="select">Qty</label>
-                                <select id="select">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                </select>
-
-                            </div>
-                            <div class="col-6 text-end">
-                                <button type="button" class="btn btn-secondary btn-sm">Add to
-                                    basket
-                                </button>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select size:</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                            <option>XXL</option>
+                        </select>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <p>Select Qty</p>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-left-minus btn btn-secondary "
+                                                data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="quantity" name="quantity" class="form-control input-number"
+                                           value="1" min="1" max="50">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-right-plus btn btn-success"
+                                                data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-10 text-end">
+                        <button type="button" class="btn btn-warning">Add to basket</button>
+
                     </div>
                 </div>
             </div>
-        </div>
     </main>
-
 </div>
+
 {% endblock %}
