@@ -1,0 +1,56 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}
+{{ product.name }}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <main class="pt-5">
+        <div class="row g-5">
+            <div class="col-md-4 col-lg-4 order-md-first bg-light">
+                <img class="img-fluid mx-auto d-block" width="300px" alt="Responsive image"
+                     src="{{ product.image.url }}">
+            </div>
+            <div class="col-md-8 col-lg-7 ps-md-3 ps-lg-5">
+                <h1 class="mb-1 h4">{{ product.name }}</h1>
+                <div class="border">
+                    <div class="col border-bottom">
+                        <div class="row p-3">
+                            <div class="col-5">PRICE:</div>
+                            <div class="col-5 text-end fs-3 fw-bold">{{ product.price }} EUR</div>
+                        </div>
+                    </div>
+                    <div class="container-fluid py-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select size:</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container-fluid py-1">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Qty:</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div
+                    <button type="button" class="btn btn-warning float-right">Add to basket</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}

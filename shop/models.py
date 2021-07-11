@@ -1,5 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(is_active=True)
+
+
+class Mainimage(models.Model):
+    name = models.CharField(max_length=15, db_index=True)
+    slug = models.SlugField(max_length=15, unique=True)
+    main_image = models.ImageField(upload_to='images/')
+
+    class Meta:
+        verbose_name_plural = 'Mainimages'
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -22,6 +39,9 @@ class Subcategory(models.Model):
     class Meta:
         verbose_name_plural = 'Subcategories'
 
+    def get_absolute_url(self):
+        return reverse('subcategory_list', args=[self.slug])
+
     def __str__(self):
         return self.name
 
@@ -38,10 +58,15 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('-created',)
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[self.slug])
 
     def __str__(self):
         return self.name

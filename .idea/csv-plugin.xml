@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\templates\shop\products\detail.html">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\templates\shop\registration.html">
           <value>
             <Attribute>

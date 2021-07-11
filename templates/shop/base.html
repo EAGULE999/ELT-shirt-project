@@ -33,7 +33,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subcategory in subcategories %}
-                    <a class="dropdown-item" href="#">{{ subcategory.name }}</a>
+                    {% if subcategory.category_id == 1 %}
+                    <a class="dropdown-item" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </ul>
@@ -44,7 +46,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for subcategory in subcategories %}
-                    <a class="dropdown-item" href="#">{{ subcategory.name }}</a>
+                    {% if subcategory.category_id == 2 %}
+                    <a class="dropdown-item" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </ul>
@@ -55,8 +59,35 @@
         </form>
 
     </div>
+    <a
+    <button class="btn btn-dark" href="{% url 'register' %}">Sign up</button>
+    </a>
+
+    {% if user.is_authenticated %}
+
+    <a
+    <button class="btn btn-warning" href="{% url 'logout' %} ">Log out</button>
+    </a>
+    <a
+    <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </a>
+
+    {% else %}
+
+    <a
+    <button class="btn btn-warning" href="{% url 'login' %} ">Log in</button>
+    </a>
+
+    {% endif %}
 
 </nav>
 </body>
 {% block content %}{% endblock %}
+{% if messages %}
+<div class="messages container py-5 ">
+    {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" ,{% endif %}>{{ message }}</li>
+    {% endfor %}
+</div>
+{% endif %}
 </html>
