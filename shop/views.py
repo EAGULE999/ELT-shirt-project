@@ -4,6 +4,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout  # add this
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+import requests
 
 
 def categories(request):
@@ -74,3 +75,28 @@ def cart(request):
 def checkout(request):
     context = {}
     return render(request, 'shop/checkout.html', context)
+
+
+
+
+
+def get_weather(request):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    city = "Riga"
+    api_key = "8d57e070b401c3295a7f0fc3f2c6836f"
+
+    res = requests.get(url.format(city)).json()
+    print(res)
+
+
+    city_info = {
+        'city': city,
+        'temp': res.get('main', {}).get('temp'),
+        'icon': res.get('weather', {})[0].get('icon'),
+        'description': res.get('weather', {})[0].get('description')
+        # 'humidity': res.get('main', {}).get('humidity'),
+        # 'wind': res.get('wind', {}).get('speed'),
+    }
+
+    context = {'city_info': city_info}
+    return render(request, 'shop/home.html', context)
