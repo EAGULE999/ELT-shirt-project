@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+<body>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="pb-3 h5">{% if query %}{% with results.count as total_results %}
+            Found {{ total_results }} products containing "{{ query }}"
+            {% endwith %}
+        </div>
+        <div class="row justify-content-md-left">
+            {% for product in results %}
+            <div class="col-md-auto">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <img class="thumbnail ml-3" width="250px" height="270px"
+                         src="{{ product.image.url }}">
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            <a href="{{ product.get_absolute_url }}" class="text-decoration-underline">{{ product.name }}</a>
+                        </p>
+                        <p class="card-text">
+                            <a class="fw-bold text-dark float-right">{{ product.price }} EUR </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+<h4>Please type in something to search </h4>
+{% endif %}
+</body>
+
+{% endblock %}

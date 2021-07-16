@@ -4,6 +4,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout  # add this
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 
 
 def main_images(request):
@@ -75,3 +76,12 @@ def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return redirect('main_images')
+
+
+def search(request):
+    results = []
+    if request.method == "GET":
+        query = request.GET.get('search')
+        results = Product.objects.filter(Q(name__icontains=query))
+    return render(request=request, template_name='shop/search.html', context={'query': query,
+                                                                              'results': results})

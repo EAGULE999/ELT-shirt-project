@@ -11,21 +11,21 @@
         <div class="container">
 
             <div class="pb-3 h5">{{subcategory.name}}</div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            <div class="row justify-content-md-left">
 
                 {% for product in products %}
 
-                <div class="col">
+                <div class="col-md-auto">
                     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                        <img class="product tumbnail thumbnail-3" width="200px" height="200px"
-                     src="{{ product.image.url }}">
+                        <img class="thumbnail ml-3" width="250px" height="270px"
+                             src="{{ product.image.url }}">
 
                         <div class="card-body">
                             <p class="card-text">
                                 <a href="{{ product.get_absolute_url }}" class="text-decoration-underline">{{ product.name }}</a>
                             </p>
                             <p class="card-text">
-                                <a class="fw-bold text-dark ">{{ product.price }} EUR </a>
+                                <a class="fw-bold text-dark float-right">{{ product.price }} EUR </a>
                             </p>
                         </div>
                     </div>
